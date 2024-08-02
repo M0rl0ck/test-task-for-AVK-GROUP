@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "This app is a test task for AVK GROUP",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
