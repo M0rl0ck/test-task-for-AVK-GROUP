@@ -1,5 +1,6 @@
 import { IPost } from "@/types/IPost";
 import React from "react";
+import { useRouter } from "next/navigation";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -11,6 +12,7 @@ interface IPostProps {
 }
 
 const Post = ({ post }: IPostProps) => {
+  const router = useRouter();
   return (
     <Card sx={{ width: "100%", minHeight: 100 }}>
       <CardContent>
@@ -22,7 +24,7 @@ const Post = ({ post }: IPostProps) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => console.log(post.id)}>
+        <Button size="small" onClick={() => router.push(`/${post.id}`)}>
           Подробнее
         </Button>
       </CardActions>
