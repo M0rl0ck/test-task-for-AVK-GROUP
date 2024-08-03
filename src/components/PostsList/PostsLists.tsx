@@ -26,7 +26,7 @@ const PostsLists = ({ posts }: IPostsLists) => {
     <Stack justifyContent="center" alignItems="center" spacing={4}>
       <Pagination
         count={Math.ceil(posts.length / RANGE)}
-        defaultPage={page + 1}
+        page={page + 1}
         variant="outlined"
         color="primary"
         onChange={(_, value) => setPage(value - 1)}
