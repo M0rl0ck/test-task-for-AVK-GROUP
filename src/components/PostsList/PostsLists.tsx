@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Stack from "@mui/material/Stack";
 import { IPost } from "@/types/IPost";
 import Post from "../Post/Post";
@@ -12,8 +12,16 @@ interface IPostsLists {
 }
 
 const PostsLists = ({ posts }: IPostsLists) => {
-  const currentPage = useSearchParams().get("page");
-  const [page, setPage] = useState(currentPage ? Number(currentPage) - 1 : 0);
+  const router = useRouter();
+  const searchPage = useSearchParams().get("page");
+  let currentPage = 0;
+  if (searchPage && +searchPage > 0 && +searchPage <= posts.length / RANGE) {
+    currentPage = +searchPage - 1;
+  } else {
+    currentPage = 0;
+  }
+  searchPage && +searchPage <= posts.length / RANGE ? +searchPage - 1 : 0;
+  const [page, setPage] = useState(currentPage);
   const [postsList, setPostsList] = useState(
     posts.slice(page * RANGE, page * RANGE + RANGE)
   );
