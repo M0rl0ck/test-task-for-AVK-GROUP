@@ -18,6 +18,11 @@ class Connector {
     const response = await axios.get<IPost>(`${this.baseUrl}/${id}`);
     return response.data;
   }
+
+  async createPost(post: Omit<IPost, "id">) {
+    const response = await axios.post<IPost>(this.baseUrl, post);
+    return response.data;
+  }
 }
 
 const connector = new Connector();
